@@ -81,7 +81,14 @@ WantedBy=multi-user.target
 그래서 프로세스 확인하니 service 스크립트에 써준 내용이랑 다른데 어떤 문제일까요?
 ```
 
+```
+혼자 찾아보고 설정하다가 도저히 모르겠어서 데비안 데스크탑 10버전 깔아서 GUI 프로그램 올려야되서 그놈 그래픽으로 사용하고있는데 원격 모니터링 하려고 x11vnc 설치하고 부팅하면 자동실행하게끔 /lib/systemd/system에 service데몬 파일설정했고 수동으로 x11vnc 키면 로컬접속이 되는데 부팅하고 켜보면 접속이 안되는데 구글에 하라는데로 해봤는데도 안되가지고 혹시 어떤 방법이 있을까요? 
+```
 
+
+
+- 5/13
+  - https://forum.ubuntuusers.de/topic/keine-verbindung-mehr-zu-x11vnc-vnc/
 
 ***
 
