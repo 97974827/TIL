@@ -39,9 +39,18 @@ real vnc
 
 - 참고 자료 
   - [x11vnc 설치](https://linuxconfig.org/how-to-share-your-desktop-in-linux-using-x11vnc)
+  
   - [데비안 9에서 x11vnc 설치 하는 영상 ](https://www.youtube.com/watch?v=US7gaqDgAxM&t=1327s)
-  - [x11vnc 비밀번호 설정 ](https://help.ubuntu.com/community/VNC/Servers#Have_x11vnc_start_automatically_via_systemd_in_any_environment_.28Vivid.2B-.29)
 
+  - [x11vnc 비밀번호 설정 ](https://help.ubuntu.com/community/VNC/Servers#Have_x11vnc_start_automatically_via_systemd_in_any_environment_.28Vivid.2B-.29)
+  
+  - [-auth 설정 ]
+  
+    ```default
+    gdm:     -auth /var/gdm/:0.Xauth
+              -auth /var/lib/gdm/:0.Xauth
+    ```
+  
 - x11vnc 설치 , 방화벽 5900 포트 열어둠 
 - /lib/systemd/system 에서 x11vnc.service 파일 만듬 
 
@@ -54,7 +63,7 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /home/charger/.vnc/passwd -rfbport 5900 -shared
+ExecStart=/usr/bin/x11vnc -auth /var/lib/gdm3/:0.Xauth -forever -loop -noxdamage -repeat -rfbauth /home/charger/.vnc/passwd -rfbport 5900 -shared
 
 [Install]
 WantedBy=multi-user.target
