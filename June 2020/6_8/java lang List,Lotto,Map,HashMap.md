@@ -199,3 +199,54 @@ public class LottoMain {
 ### HashMap
 
 - 키와 값의 타입은 기본 타입으로 사용할 수 없고, 클래스 및 인터페이스 타입만 사용이 가능하다.
+
+```java
+package Collects;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class MapMain {
+	
+	public static void main(String[] args) {
+		Map maps = new HashMap();
+		
+		String s1 = new String("홍길동");
+		
+		maps.put("name", s1);
+		maps.put("hiredate", new Date()); // 1회용 익명객체(저장 하지 않은 상태) - 다시 부를수 없음  
+		maps.put("salary", 20000);
+		
+		System.out.println(maps);
+		
+		// keySet() 메서드로 map 키를 리턴받고 get(key) 메서드로 조회
+		Set<Map.Entry<String, Object>> s = maps.entrySet();
+		
+		for(Map.Entry<String, Object> me : s) {
+			System.out.println(me.getKey() + " : " + me.getValue());
+		}
+		
+		System.out.println();
+		Set<String> ss = maps.keySet();
+		
+		for(String key : ss) {
+			System.out.println(key + " :: " + maps.get(key));
+		}
+	}
+}
+/*
+{name=홍길동, salary=20000, hiredate=Tue Jun 09 09:21:37 KST 2020}
+name : 홍길동
+salary : 20000
+hiredate : Tue Jun 09 09:21:37 KST 2020
+
+name :: 홍길동
+salary :: 20000
+hiredate :: Tue Jun 09 09:21:37 KST 2020
+
+*/
+
+```
+
