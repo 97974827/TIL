@@ -183,7 +183,7 @@ b = 5
 if not b < 0:
     print("0보다 작지 X")
 
-
+# 입력 0~567 범위 지정하여 n의 배수의 총합 구하기 
 add = int(input("배수를 입력 : "))
 num = 0
 n = add
