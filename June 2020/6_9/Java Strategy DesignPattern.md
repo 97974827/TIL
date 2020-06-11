@@ -2,7 +2,7 @@
 
 ### `Java Design Pattern`
 
-- 참고 youtube : [[이야기's ] 자바 디자인 패턴](https://www.youtube.com/watch?v=UEjsbd3IZvA&list=PLsoscMhnRc7pPsRHmgN4M8tqUdWZzkpxY&index=2&t=0s)
+- 참고 youtube : [[이야기's ] 자바 디자인 패턴](https://www.youtube.com/watch?v=UEjsbd3IZvA&list=PLsoscMhnRc7pPsRHmgN4M8tqUdWZzkpxY&index=2&t=0s){: target="_blank"}
 
 #### 인터페이스
 
@@ -27,6 +27,7 @@
 
 - 행위를 클래스로 캡슐화해 동적으로 행위를 자유롭게 바꿀 수 있게 해주는 패턴
 - **즉, 전략을 쉽게 바꿀 수 있도록 해주는 디자인 패턴이다**
+- **"프로젝트 전체에서 변경이 일어나지 않는 부분에서 변경이 일어나는 부분을 찾아서 따로 캡슐화한다"**
 - 전략이란
   - 어떤 목적을 달성하기 위해 일을 수행하는 방식, 비즈니스 규칙, 문제를 해결하는 알고리즘 등
   - 특히 게임 프로그래밍에서 게임 캐릭터가 자신이 처한 상황에 따라 공격이나 행동하는 방식을 바꾸고 싶을 때 스트래티지 패턴은 매우 유용하다.
