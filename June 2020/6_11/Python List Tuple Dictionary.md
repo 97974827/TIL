@@ -23,7 +23,7 @@ per = 97
 print("오늘 학습 진도율은 %d%%" % per)
 
 
-# 포매팅이 여럿인 경우는 % 뒤에 나열할 자료를 ()로 감싸준다
+# 주의 : 포매팅이 여럿인 경우는 % 뒤에 나열할 자료를 ()로 감싸준다
 month = 6
 day = 6
 anni = "현충일"
@@ -362,7 +362,7 @@ print(a, b)
 
 # 다른 언어는 라이브러리로 제공하는 고급 자료구조이지만
 # 파이썬에서는 기본 데이터타입으로 제공하여 편리하게 사용가능
-# 사전을 정의할 때는 {}괄호 안에 key:value 형태로 구분하여나열
+# 사전을 정의할 때는 {}괄호 안에 key:value 형태로 구분하여나열, dict() 선언도 가능
 # 사전에 데이터가 저장되는 것에는 순서가 없음
 
 # 사전에 사용되는 key 는 중복값을 가질수 없고 변경할 수도 없다
@@ -399,7 +399,40 @@ print(dic)  # {'멍멍이': 'puppy', '야옹이': '강감찬', '메뚜기': '장
 # 사전 요소삭제
 del dic["소녀"]
 print(dic)  # {'멍멍이': 'puppy', '야옹이': '강감찬', '메뚜기': '장보고'}
+print("-"*40)
 
+# 사전의 key 목록과 value 목록을 얻고싶다면 keys(), values() 메서드 사용
+# 위 메서드는 각각의 목록을 리스트형태의 객체로 리턴
+# items() 메서드는 키와 값의 쌍을 튜플로 묶은 리스트를 리턴
+# 위 메서드들로 얻은 데이터는 반복문으로 순회해서 사용할 수 있다
+# 그러나 진짜 리스트는 아니어서 값을 편집할 수는 없다
+print(dic.keys())    # dict_keys(['멍멍이', '야옹이', '메뚜기'])
+print(dic.values())  # dict_values(['puppy', '강감찬', '장보고'])
+print(dic.items())   # dict_items([('멍멍이', 'puppy'), ('야옹이', '강감찬'), ('메뚜기', '장보고')])
+
+keylist = dic.keys()  # 키값만 모아서 저장
+print(type(keylist))  # <class 'dict_keys'>
+for k in keylist:
+    print(k)
+
+value_list = dic.values()
+print(type(value_list))
+for v in value_list:
+    print(v)
+print("-" * 40)
+
+# update() 메서드는 두개의 사전을 하나로 병합
+# 병합시에 키가 중복된다면 병합당하는 사전의 키를 사용
+
+# 딕셔너리 자료형도 두 개이상을 합쳐줄수 있다
+# 이 경우 기존 딕셔너리.update(병합딕셔너리) 를 사용하며
+# 만약 키값이 겹치는 경우는 병합딕셔너리의 키값이 최종 반영된다
+dic1 = {"boy":"소년", "school":"학교", "book":"서점"}
+dic2 = {"student":"학생", "teacher":"선생님", "book":"책"}
+
+print(dic1)  # {'boy': '소년', 'school': '학교', 'book': '서점'}
+dic1.update(dic2)
+print(dic1)  # {'boy': '소년', 'school': '학교', 'book': '책', 'student': '학생', 'teacher': '선생님'}
 
 ```
 
