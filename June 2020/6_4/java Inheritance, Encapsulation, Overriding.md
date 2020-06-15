@@ -65,4 +65,5 @@ return;  : void 구문에서 사용가능 , 메소드를 종료시키는 기능
 
 #### 이클립스 - set, get 쉽게 만드는 법
 
-- 스크립트 우클릭 - **Source - Generate Getters and Setters 클릭**
+- 스크립트 우클릭
+  -  **Source - Generate Getters and Setters 클릭**
