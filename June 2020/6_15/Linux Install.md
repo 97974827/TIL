@@ -86,6 +86,10 @@ vmx 파일 열기 경로 : `C:\Users\82105\Documents\Virtual Machines\CentOS 7.8
 
 ***
 
+#### centos ISO image DownLoad
+
+- https://www.centos.org/download/mirrors/
+
 ### vmware - guest OS에서 마우스 빼기 -- "Ctrl + ALT"
 
 - suspend Guest 는 사용 권장 X -- 네트워크 장치가 없어지는 이슈 있음 
