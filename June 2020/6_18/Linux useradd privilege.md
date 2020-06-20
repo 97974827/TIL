@@ -30,6 +30,7 @@
     - skel 정의 - 사전적의미 (해골)
 
       - 사용자를 생성할 떄, 그 사용자의 홈 디렉터리에 자동으로 /etc/skel/안에 있는 파일과 디렉터리를 (/home/유저) 에 **자동 생성** 시키는 역할 
+      - 여러 계정을 만들어야 할때 유용하게 사용함 
 
     - ```shell
       [root@localhost home]# ls -al /etc/skel/
@@ -64,20 +65,22 @@ $ samadal:x:1000:1000:samadl:/home/samadal:/bin/bash
 
 ***
 
-### 사용자 생성 , 수정 , 삭제
+### 사용자 생성
 
 - `useradd`
   - 계정을 생성하면 home 디렉토리에 파일도 같이 만들어진다 
   - 옵션
     - -c : comment
     - -s : 쉘 종류 
+    - -mk : skel 지정 디렉토리설정
+    - -d : 홈 디렉토리 지정 
 
 ```shell
 # 형식 : useradd [옵션1][값1][옵션2][값2] ... [사용자명]  (옵션, 값은 생략가능 /둘은매칭이되어야한다)
 $ useradd user1
 
 # 끝에서부터 3라인 출력 -> 새로운 계정 생성후 확인하면 추가되어있음 
-$ tail - 3 /etc/passwd
+$ tail -3 /etc/passwd
 
 # 유저 생성 후 계정정보 파일보기 
 $ useradd -c testuser -s /bin/tcsh user2
@@ -105,13 +108,13 @@ user2:x:1003:1003:testuser:/home/user2:/bin/tcsh
 # mkdir/cloud/ 
 # useradd -s /bin/sh -d /cloud/user3 user3 
 
-# useradd-d/clouduser33 [오류] [계정은생성됬음] 
-# tail-5/etc/passwd
+# useradd -d /clouduser33 [오류] [계정은생성됬음] 
+# tail -5 /etc/passwd
 # useradd -d /cloud/ictuser333 
-# tail-6/etc/passwd 
-# ls-l/cloud/
+# tail -6 /etc/passwd 
+# ls -l /cloud/
 
-# 사용자의 홈디렉토리의 정보를 변경 : 
+# 사용자의 홈 디렉토리의 정보만 변경 : ( /home 은 바뀌지 않음 )
 $ useradd -d 
 # useradd-d/clouduser33 [오류] 
 
@@ -200,19 +203,55 @@ drwxr-xr-x. 9 root  root  4096 Jun 18 04:53 ..
 -rw-r--r--. 1 user5 user5  231 Jun 18 04:47 .bashrc
 -rw-r--r--. 1 user5 user5    0 Jun 18 04:47 mas
 drwxr-xr-x. 4 user5 user5 4096 Jun 18 04:47 .mozilla
-[root@localhost skel]# 
 
 
+# 실습
+/usertest/test(사용자)/public(자동생성디렉토리)
+
+스캘 디렉토리 적용 
+
+
+3) 사용자 계정 생성시 기본 설정 파일 및 명령어
+
+명령어 : useradd -D (전체가 명령어) [옵션] [값]
+문서파일 : cat /etc/default/useradd
+
+HOME=/home       -b   - 홈 디렉토리 
+SHELL=/bin/bash  -s   - 기본값 bash
+SKEL=/etc/skel   없음  - 기본값 skel
+
+[root@localhost usertest]# useradd -D
+GROUP=100
+HOME=/home
+INACTIVE=-1
+EXPIRE=
+SHELL=/bin/bash
+SKEL=/etc/skel
+CREATE_MAIL_SPOOL=yes
+
+[root@localhost usertest]# cat /etc/default/useradd
+# useradd defaults file
+GROUP=100
+HOME=/home          - 홈 디렉토리(주의)
+INACTIVE=-1         
+EXPIRE=
+SHELL=/bin/bash     - 기본값 bash
+SKEL=/etc/skel      - 기본값 skel
+CREATE_MAIL_SPOOL=yes - 개인 메일파일을 만들거냐(/home 밑에 생성)
+
+# useradd -D -b /kg -s /bin/sh  (주의 : 사용자 만들때는 디렉토리 뒤에 /써주면 안됨 )
+-> 정보 바뀜
+HOME=/kg 
+SHELL=/bin/sh
+
+- 사용자 계정 많이생성할때 사용용이
 
 ```
 
+#### 시스템 관리 팁
 
+- 나 - 기업인
 
-***
+- 고객 
 
-### 허가권, 소유권
-
-```shell
-
-```
-
+- 이 명령은 이렇게 써야하는구나 / 이렇게 쓰면 좋겠다 생각 하면 좋음 
