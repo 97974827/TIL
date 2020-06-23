@@ -70,10 +70,10 @@ $ samadal:x:1000:1000:samadl:/home/samadal:/bin/bash
 - `useradd`
   - 계정을 생성하면 home 디렉토리에 파일도 같이 만들어진다 
   - 옵션
-    - -c : comment
-    - -s : 쉘 종류 
-    - -mk : skel 지정 디렉토리설정
-    - -d : 홈 디렉토리 지정 
+    - **-c** : comment
+    - **-s** : 쉘 종류 
+    - **-mk** : 사용자 skel 디렉토리 지정
+    - **-d** : 홈 디렉토리 경로 지정 
 
 ```shell
 # 형식 : useradd [옵션1][값1][옵션2][값2] ... [사용자명]  (옵션, 값은 생략가능 /둘은매칭이되어야한다)
@@ -92,10 +92,10 @@ user2:x:1003:1003:testuser:/home/user2:/bin/tcsh
 
 # useradd user1 
 확인: 
-1_1) 사용자정보확인
+1_1) 사용자 정보 확인
 # tail-3/etc/passwd 
 
-1_2)사용자집확인
+1_2)사용자 집 확인
 # ls-l/home/ 
 1_3)사용자 개인메일 파일확인
 # ls-l/var/spool/mail/
