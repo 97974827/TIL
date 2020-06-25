@@ -1,0 +1,24 @@
+  
+  11 # Allow anonymous FTP? (Beware - allowed by default if you comment this out).
+     12 anonymous_enable=no
+     13 #
+     14 # Uncomment this to allow local users to log in.
+     15 # When SELinux is enforcing check for SE bool ftp_home_dir
+     16 local_enable=YES
+     17 #
+     18 # Uncomment this to enable any form of FTP write command.
+     19 write_enable=YES
+
+
+95 # You may specify an explicit list of local users to chroot() to their home
+     96 # directory. If chroot_local_user is YES, then this list becomes a list of
+     97 # users to NOT chroot().
+     98 # (Warning! chroot'ing can be very dangerous. If using chroot, make sure that
+     99 # the user does not have write access to the top level directory within the
+    100 # chroot)
+    101 chroot_local_user=YES
+    102 allow_writeable_chroot=YES
+    103 use_localtime=YES
+    104 #chroot_list_enable=YES
+    105 # (default follows)
+    106 #chroot_list_file=/etc/vsftpd/chroot_list

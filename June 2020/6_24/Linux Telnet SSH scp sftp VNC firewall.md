@@ -191,13 +191,38 @@ PermitRootLogin yes
 #### 3. VNC (Virtual network computing)
 
 - GUI  그래픽 원격 모드
-- 포트 : 5900
+- 포트 : 5900 - 모를 땐 `/etc/services` 파일에서 찾기
+  - 포트번호가 1번이여도 접속 가능함 1=5901 alias 
 
 ```shell
 $ .vnc/xstartup 파일이 실행되면 구축됨 
+
+[root@localhost ~]# cd .vnc
+[root@localhost .vnc]# ls -l
+합계 24
+-rw-r--r--. 1 root root  332  6월 24 17:29 config
+-rw-r--r--. 1 root root 5491  6월 24 17:46 localhost.localdomain:1.log
+-rw-r--r--. 1 root root    6  6월 24 17:29 localhost.localdomain:1.pid
+-rw-------. 1 root root   16  6월 24 17:29 passwd
+-rwxr-xr-x. 1 root root  540  6월 24 17:29 xstartup
+
 ```
 
 
+
+#### 프로세스 명령
+
+```shell
+# 검색
+$ ps -ef | grep [데몬이름 및 명령어]
+
+# 죽이기
+kill -9 [pid]
+																	   [명령어동작]
+[계정] [PID] [PPID] [CPU점유율]  [시간] [터미널창동작] [얼마동안 사용한시간]  [데몬프로그램이름]
+root   2604  2446     0        09:09   pts/0      00:00:00         grep --color=auto vnc
+
+```
 
 
 
