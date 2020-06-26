@@ -43,7 +43,7 @@ $ systemctl status vsftpd.service
    1. 윈도우 cmd 		`$ ftp [IP주소]`
    2. ftp 프로그램 이용
    3. 웹 접속 **ftp://IP주소** -> 단 실행창에서 사용 
-      - `/pub`  -- 원래 경로 `/var/ftp/pub`
+      - `/pub`  -- 원래 기본경로 `/var/ftp/pub`
 
 
 
@@ -52,6 +52,7 @@ $ systemctl status vsftpd.service
    - 파일경로 
 
      - **`/etc/vsftpd/vsftpd.conf`**
+     - <실습> - 사용자 홈 디렉토리 권한 변경 안해서 chroot 접속 하지 못햇음 
 
 
 ```shell
@@ -103,10 +104,10 @@ $ blkid # block id
 
 
 9 UUID=f08bb8c5-a64a-4c0e-a2bf-ff26020d0034 
-[M.P]	      [f.s type][Automount여부][dump][filesystem check]
-/                ext4    defaults        1 1
+[M.P]	      [f.s type][Automount여부] [dump][filesystem check]
+/                ext4    defaults         1    1
 10 UUID=f75a7257-f359-4baa-8666-de95f1bf03ad 
-swap             swap    defaults        0 0
+swap             swap    defaults         0    0
 
 ```
 
@@ -303,7 +304,7 @@ Filesystem                 Size  Used Avail Use% Mounted on
 - 결과는 되는데 결론적으로 저렇게 설정하면 안됨
   - 여러명의 클라이언트 측면 생각했을때 서비스는 해줄수 있는데 automount 설정한 클라이언트 들은 **부팅이 안되는 현상이 발생함** 
   - 클라이언트가 컴퓨터 고장이라 착각할 수 있음 
-  - 이런 이유로 NFS 자체에서 auto 로 잡을 수 있다 - (클라이언트 환경에서 설정 가능)
+  - **이런 이유로 NFS 자체에서 auto 로 잡을 수 있다 - (클라이언트 환경에서 설정 가능 - 아래 설명)**
 
 
 
@@ -312,12 +313,65 @@ Filesystem                 Size  Used Avail Use% Mounted on
 ```shell
 # find /etc -name auto* -type f | nl
      1	/etc/auto.smb
-0     2	/etc/sysconfig/autofs
+0     2	/etc/sysconfig/autofs  # 실제로 설정적용하는 파일 
      3	/etc/autofs_ldap_auth.conf
      4	/etc/auto.net      
-0     5	/etc/auto.master
-0     6	/etc/auto.misc
-0     7	/etc/autofs.conf
+0     5	/etc/auto.master  #  misc 파일에 대한설명  
+0     6	/etc/auto.misc    #  alias 잡음 (/misc - auto.misc) automount 설정파일 
+0     7	/etc/autofs.conf  #  옵션 사용정의 후 설정 파일에 따로 적용 : 이파일은 정의만 한파일 
+
+```
+
+- autofs 데몬 활성화 하면 /misc 생김 
+
+
+
+**/etc/auto.misc**
+
+```shell
+1 #
+2 # This is an automounter map and it has the following format
+3 # key [ -mount-options-separated-by-comma ] location
+4 # Details may be found in the autofs(5) manpage
+5 
+
+# [M.P]					[파일시스템 유형]				[파티션명]
+6 cd              -fstype=iso9660,ro,nosuid,nodev :/dev/cdrom
+7 
+8 # the following entries are samples to pique your imagination
+9 #linux          -ro,soft,intr           ftp.example.org:/pub/linux
+10 #boot           -fstype=ext2            :/dev/hda1
+11 #floppy         -fstype=auto            :/dev/fd0
+12 #floppy         -fstype=ext2            :/dev/fd0
+13 #e2floppy       -fstype=ext2            :/dev/fd0
+14 #jaz            -fstype=ext2            :/dev/sdc1
+15 #removable      -fstype=ext2            :/dev/hdd
+
+client            -rw,hard,intr           192.168.1.101:/nfs_server 
+# 추가함 : 임의의디렉토리 생성 안해도됨 
+
+```
+
+
+
+**/etc/sysconfig/autofs**
+
+```shell
+  1 #
+  2 # Init syatem options
+  3 #
+  4 # If the kernel supports using the autofs miscellanous device
+  5 # and you wish to use it you must set this configuration option
+  6 # to "yes" otherwise it will not be used.
+  7 # 
+  8 USE_MISC_DEVICE="yes"   # 이 설정이 되어 있어야한다 
+  9 #
+  10 # Use OPTIONS to add automount(8) command line options that
+  11 # will be used when the daemon is started.
+  12 #
+  13 #OPTIONS=""
+  14 #
+  BROWSE_MODE="yes"    # 이 설정이 되어 있어야한다 : /misc 에 마운트 잡힘
 
 ```
 
