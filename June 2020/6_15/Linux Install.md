@@ -98,10 +98,10 @@ vmx 파일 열기 경로 : `C:\Users\82105\Documents\Virtual Machines\CentOS 7.8
   - 하드디스크를 활성화 시킴 
 
 - 파티션 나누기 - 수동선택 
-  - 표준 파티션 선택
+  - **표준 파티션 선택**
     - +-add  mount 
       - /(최상위) 용량은 비워둠 
-        - File System - ext4 선택 
+        - File System - **ext4** 선택 
       - swap 2048 (리눅스의 가상메모리 : 사용자가 잡아줘야함 , 시스템이 잡지못함 )
 
 ***

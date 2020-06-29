@@ -149,7 +149,7 @@ swap             swap    defaults         0    0
 
 - **포트 : 2049**
 - 환경설정
-  - `/etc/exports` - 파일이 존재하지만 내용은 비어있다
+  - `/etc/exports` - ** 패키지 설치시 파일이 존재하지만 내용은 비어있다**
     - squash - 으깨다 , 뿌시다
     - no_root_squash
       - nfs server의 관리자 권한 부여 
