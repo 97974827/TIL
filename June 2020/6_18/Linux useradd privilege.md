@@ -25,7 +25,7 @@
 
   - `/etc/group`
 
-  - `/etc/skel/*`
+  - `/etc/skel/*` - **중요**
 
     - skel 정의 - 사전적의미 (해골)
 

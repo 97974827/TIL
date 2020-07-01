@@ -104,10 +104,11 @@ $ blkid # block id
 
 
 9 UUID=f08bb8c5-a64a-4c0e-a2bf-ff26020d0034 
-[M.P]	      [f.s type][Automount여부] [dump][filesystem check]
-/                ext4    defaults         1    1
-10 UUID=f75a7257-f359-4baa-8666-de95f1bf03ad 
-swap             swap    defaults         0    0
+[UUID]            [M.P]	      [f.s type][Automount여부] [dump][filesystem check]
+HDD 파티션이름      /               ext4    defaults         1    1
+
+[UUID]           10 UUID=f75a7257-f359-4baa-8666-de95f1bf03ad 
+/dev/sda2            swap             swap    defaults         0    0
 
 ```
 
@@ -122,7 +123,7 @@ swap             swap    defaults         0    0
 
 <img src="./automount.PNG">
 
-- 11번 라인 automount 실패시 부팅이안됨 (관리자 모드 부팅)
+- ### 11번 라인 automount 실패 시 부팅이 안됨 (관리자 모드 부팅해야함)
 
 
 

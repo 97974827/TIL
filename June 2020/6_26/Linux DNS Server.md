@@ -80,6 +80,7 @@
         - naver
 
 - 정방향 조회 
+  
   - Domain -> IP 변환 (udp)
 - 역방향 조회
   - IP -> 역 IP
@@ -165,7 +166,7 @@ nameserver 168.126.63.1   # kns (인터넷 서버중 하나) 슈퍼dns
 
 #### `/etc/named.rfc1912.zones`
 
-- 정방향, 역방향 영역을 정의하는 파일 
+- **정방향, 역방향 영역을 정의하는 파일** 
 - 적혀있는 쉘 스크립트 복사해서 밑에 붙여넣은후 수정해야함 
 
 ```shell
@@ -258,3 +259,12 @@ zone "1.168.192.in-addr.arpa" IN {
   - ns.samadal.com.  도메인의 네임서버로 인터넷 검색을 함 
 - ns     IN      A       192.168.1.101
   - web server IP 적어줘야함 
+
+
+
+#### 정방향 역방향 정의 파일 권한 소유권 변경
+
+```shell
+chmod 645 kang*; chown :named kang*
+```
+
