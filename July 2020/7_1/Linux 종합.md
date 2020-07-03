@@ -7,7 +7,15 @@
   - https://xe1.xpressengine.com/index.php?mid=download&package_id=18325662&release_id=22756225
 - 홈페이지 디자인 무료제작 
   
-- 리눅스에도 .zip 파일 지원하기 때문에 `unzip` 명령으로 압축 풀수 있음 
+- **리눅스에도 알집파일 호환하기 때문**에 `unzip` 명령으로 압축 풀수 있음 
+
+- xe 퍼미션- 모든 사람들이 들어와야함 - 707
+- xe 제로보드 설치
+  - mysql 함수이용 선택 (3번째)
+  - mysql 정보입력
+    - db 호스트네임 : DB IP기입 
+- **[mysql 쿼리 history 확인** ]
+  - [https://morphys.tistory.com/entry/mysql%EC%97%90-%EC%9E%85%EB%A0%A5%ED%96%88%EB%8D%98-%EB%AA%85%EB%A0%B9%EC%96%B4history%EB%A5%BC-%EB%B3%B4%EA%B8%B0](https://morphys.tistory.com/entry/mysql에-입력했던-명령어history를-보기)
 
 
 
@@ -23,7 +31,7 @@
     - cafe 
     - blog
   - jin (원하는 계정)
-- domain : kangmung.com
+- domain : kangmoong.com
 - **오토마운트 활성 후 사용자 생성** 
 - 시스템 3대 따로
   - DNS 
@@ -69,7 +77,7 @@
 
 ***
 
-#### 7/2
+#### 7/2,3
 
 - 먼저, 오토마운트 활성 후, 사용자 도입해야합니다.
   - main 마운트 이후 main 생성
@@ -94,15 +102,27 @@
   - 각 홈 디렉토리 경로 설정 
     - ex ) `Alias /it 		 /export/home/mp_main/main/mp_it/it/public_html`
 
+- DNS 설정
+
+- WEB 설정 / 사용자 경로 설정 
+
+- DB 사용자 / 테이블 / 설정
+
+- DB 서버에서 각 계정 접속 성공 
+
 
 
 #### 미비된점
 
-- web 설정 : main 도큐먼트루트 지정 
-  - 사용자 디렉토리 별 Alias 적용 
-  - 사용자 디렉토리별 index.html 만들어 업로드 
-- DB 사용자 / 테이블 / 설정
+- phpmyadmin(웹서버) - DB 접속 안됨
+  - 로컬 DB서버
+    - 커맨드 창  -> 접속 O
+    - phpmyadmin 웹 -> 접속 X
+  - 웹 서버 
+    - 접속 X
 - XE 제로보드 셋팅
+  - xe 퍼미션오류
+  - **디비 연동 안됨, 디비 계정 생성안됨  : 둘중하나** 
 
 
 
@@ -110,9 +130,9 @@
 
 #### 현재 부족한점
 
+- cat / find / 리다이렉션 활용
+
 - 쉘 스크립트 작성법
 - cron 백업
 
 - 저장공간 로그파일 관리 (메모리) - 오래된 로그 파일삭제 
-
-- cat / find / 리다이렉션 활용

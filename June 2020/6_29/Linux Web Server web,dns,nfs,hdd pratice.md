@@ -140,7 +140,7 @@ HDD (1G(sauron) 통으로 파티션) NFS 이용하여 기본문서 index를 넘�
 	/var/named/named.localhost (새파일로 생성해야함 , 기존파일 손상/변화 시키면 안됨)
 
 8. Web 설정
-	경로 
+	도큐먼트루트 경로 
 	
 9. sauron 허가권 바꾸기 
 

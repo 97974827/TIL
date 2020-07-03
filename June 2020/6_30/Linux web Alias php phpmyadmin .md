@@ -54,11 +54,14 @@ Alias	/ck		/export/home/samadal/1/2/3/4/5
 
 
 
-`yum -y install --skip-broken php*`
-
 - **phpmyadmin 5.5 버전부터 유료화 - 대체 버전 4.0.10.20** 
   - [참고 - [CentOS] phpMyAdmin "Cannot start session without errors"](https://webdir.tistory.com/183)
-
 - DNS : www.samadal.com/phpmyadmin
   - 디비 계정 접속 = 리눅스 커맨드 창 실행이랑 동일 
 
+
+
+- phpmyadmin 설치 이후 웹 사이트 접속 시 php 스크립트가 나옴
+  - php 패키지가 있나 확인 
+- yum 으로 php 설치 시 충돌나는 패키지 있음 - php-mysql  / php-mysqlnd
+  - `yum -y install --skip-broken php*` (충돌 무시 yum 사용)
