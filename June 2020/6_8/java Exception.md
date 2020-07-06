@@ -105,3 +105,89 @@ public class TryCatchCase1 {
  }
 ```
 
+
+
+***
+
+### throw
+
+- 연산자 new를 이용해서 발생 시키려는 예외 클래스의 객체를 만든다음
+- 키워드 throw를 이용해서 예외를 발생시킨다.
+- ```throw new Exception("고의로 발생시킴");```
+
+
+
+#### 메서드에 예외 선언 : throws
+
+- 예외를 처리하는 방법에는 지금까지 배워 온 try ~ catch 문을 사용하는 것 외에 , 예외를 메서드에 선언하는 방법이 있다 
+- 메서드에 예외를 선언하려면 , 메서드의 선언부에 키워드 throws를 사용해서 메서드 내에서 발생할 수 있는 예외를 적어주기만 하면된다. 그리고 예외가 여러 개일 경우에는 쉼표(,)로 구분한다
+
+```java
+void method() throws Exception1, Exception2, ... ExceptionN{
+	// 내용 
+}
+```
+
+- 하지만 이렇게 예외를 선언하면 이 예외뿐만 아니라 그 자손타입의 예외까지도 발생할 수 있다는 점에 주의
+- 오버라이딩할 때는 단순히 선언된 예외의 개수가 아니라 상속관계까지 고려해야한다 
+
+
+
+- 사실 예외를 메서드의 throws에 명시하는 것은 예외를 처리하는 것이 아니라 , **자신(예외가 발생할 가능성이 있는 메서드)을 호출한 메서드에게 예외를 전달하여 예외처리를 떠맡기는 것이다**
+
+- 이처럼 예외가 발생한 메서드에서 예외처리를 하지 않고 자신을 호출한 메서드에게 예외를 넘겨줄 수는 있지만 , 이것으로 예외가 처리된 것은 아니고 예외를 단순히 전달만 하는 것이다 
+- **결국 어느 한 곳에서는 반드시 try~catch 문으로 예외처리를 해주어야한다** 
+
+
+
+```java
+package exception;
+
+import java.io.File;
+
+public class ExceptionMain {
+	
+	public static void main(String[] args) {
+		
+		File file = createFile("");
+		System.out.println(file.getName() + " 파일 생성 성공");
+			
+	}
+	
+	static File createFile(String file_name) {
+		try {
+			if(file_name.equals("") || file_name == null) {
+				throw new Exception("파일이름이 유효 X");
+			}
+		} catch(Exception e) {
+			file_name = "제목없음.txt";
+			e.printStackTrace();
+		} finally {
+			File f = new File(file_name);
+			createNewFile(f);
+			return f;
+		}
+	}
+	
+	static void createNewFile(File f) {
+		try {
+			f.createNewFile();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+```
+
+- 이 예제는 예외가 발생한 메서드에서 직접 예외를 처리하도록 되어있다
+- createFile 메서드를 호출한 메인 메서드에서는 예외가 발생한 사실을 알지 못한다 
+- 적절하지 못한 파일 이름이 입력되면 예외를 발생시키고 catch 블럭에서 파일이름을 제목없음.txt 로 설정해서 파일을 생성한다 
+
+
+
+#### finally
+
+- finally 블럭에서는 예외의 발생여부에 관계 없이 파일을 생성한다 
+  - 가급적 finally에서는 return 사용 X
+- try catch 블럭에서 return 문을 만나도 finally 블록은 실행된다 
