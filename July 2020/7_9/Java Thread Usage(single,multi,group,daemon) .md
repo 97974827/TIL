@@ -52,9 +52,11 @@
    - ```java
      Runnable r = new Mythread();
      Thread thread = new Thread(r);
-     thread.start();
+     
+     Thread 스레드객체 = new Thread(new Runnable구현클래스());
+thread.start();
      ```
-
+     
    - ```java
      public class Thread{
      	private Runnable r; // Runnable 을 구현한 클래스의 인스턴스를 참조하기 위한 변수
@@ -68,11 +70,11 @@
                  r.run(); // Runnable인터페이스를 구현한 인스턴스의 run()을 호출한다 
              }
          }
-     }
+  }
      ```
 
    - Thread 클래스를 상속받으면 자손 클래스에서 조상인 Thread 클래스의 메서드를 직접 호출 가능 
-
+   
    - Runnable인터페이스를 구현하면 Thread 클래스의 static 메서드인 currentThread()를 호출하여 스레드에 대한 참조를 얻어와야만 호출 가능 
 
 ```java
@@ -706,39 +708,3 @@ public class GabageCollecterTest {
 
 
 
-### 동기화 (synchronized)
-
-- 멀티스레드 프로세스의 경우 여러 스레드가 같은 프로세스 내의 자원을 공유해서 작업하기 때문에 서로의 작업에 영향을 주게 된다 
-- 동기화 사용이유?
-
-```
-스레드 A가 작업하던 도중에 다른 스레드 B에게 제어권이 넘어갔을 때, 스레드 A가 작업하던 
-공유데이터를 스레드 B가 임의로 변경하였다면, 다시 스레드 A가 제어권을 받아서 
-나머지 작업을 마쳤을 때 원래 의도했던 것과는 다른 결과를 얻을 수 있음 
-```
-
-- 이러한 일이 발생하는 것을 방지하기 위해서 한 스레드가 특정 작업을 끝마치기 전까지 다른 스레드에 의해 방해 받지 않도록 하는 것이 필요하다 = **`임계영역(Critical Section) 과 잠금(Lock) 도입`**
-
-- 공유 데이터를 사용하는 코드 영역을 임계 영역으로 지정해놓고, 공유 데이터(객체)가 가지고 있는 lock을 획득한 단 하나의 스레드만 이 영역 내의 코드를 수행할 수 있도록 한다.
-- 그리고 해당 스레드가 임계 영역내의 모든 코드를 수행하고 벗어나서 lock을 반납해야 비로소 다른 스레드가 반납된 lock을 획득하여 임계 영역의 코드를 수행할 수 있게 된다.
-
-
-
-#### synchronized을 이용한 동기화
-
-```java
-1. 메서드 전체를 임계 영역으로 지정
-    public synchronized void calcSum(){ // 임계영역 (Critical section)
-    ...
-	}
-
-2. 특정한 영역을 임계 영역으로 지정
-    synchronized (객체의 참조변수){ // 임계 영역 (Critical section)
-    ...
-	}
-```
-
-- 첫 번째 방법은 메서드 앞에 synchronized 을 붙이면 메서드 전체가 임계영역으로 설정된다
-  - 스레드는 synchronized메서드가 호출된 시점부터 해당 메서드가 포함된 객체의 lock을 얻어 작업을 수행하다가 메서드가 종료되면 lock을 반환한다.
-- 두 번째 방법은 메서드 내의 코드 일부를 블럭{}으로 감싸고 블럭 앞에 'synchronized(참조변수)'를 붙이는 것인데, 이 때 참조변수는 락을 걸고자하는 객체를 참조하는 것이여야 한다 
-  - 이 블럭의 영역 안으로 들어가면서부터 스레드는 지정된 객체의 lock을 얻게 되고 , 이 블럭을 벗어나면 lock을 반납한다

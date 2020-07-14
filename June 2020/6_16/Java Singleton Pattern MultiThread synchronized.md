@@ -6,6 +6,10 @@
 
 ### `Java Design Pattern`
 
+- 디자인 패턴 원칙 : https://victorydntmd.tistory.com/291?category=719467
+- Github 디자인 패턴 참고 소스 (자바, 코틀린)
+  - https://github.com/qjatjr1108/DesignPattern_Java-Kotlin#prototype
+
 ### Singleton
 
 - 참고 사이트 
