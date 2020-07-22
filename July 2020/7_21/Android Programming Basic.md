@@ -16,12 +16,14 @@
 
 - app
   - **activity_main.xml** 
+    - app/res/layout
     - 화면구성 디자인
     - xml 코드
   - **mainActivity.java**
-    - 디자인에 대한 기능 설정
+    - java/패키지/
+  - 디자인에 대한 기능 설정
     - 메인 파일 
-
+  
 - **Gradle Scripts**
   - 소스코드를 컴퓨터가 어떻게 알아먹나 설정하는 파일 
   - 추가 설정 파일이나 변경사항을 반영할경우 

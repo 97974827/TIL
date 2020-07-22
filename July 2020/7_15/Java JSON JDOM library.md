@@ -42,17 +42,24 @@ try {
 
 
 
-- #### 날씨 jdom 파싱 
+- #### 날씨 jdom 파싱 참고사이트 
 
   - [자바참고 사이트](https://m.blog.naver.com/PostView.nhn?blogId=javaking75&logNo=220092064359&proxyReferer=https:%2F%2Fwww.google.com%2F)
 
   - [자바참고 사이트 2](https://joke00.tistory.com/31)
+
+  - https://mindcontrol89.tistory.com/9
 
   - [기상청 RSS 안내페이지](https://www.weather.go.kr/weather/lifenindustry/sevice_rss.jsp)
 
   - 광주 광역시 RSS
 
     - http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=2920062400
+
+  - 중기 예보 (전국)
+
+    - http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108
+    - https://violet31.tistory.com/4
 
   - #### 동네예보 XML 데이터 설명
 
@@ -161,3 +168,44 @@ public class WeatherUtil {
 
 ```
 
+서울
+인천
+수원
+파주
+이천
+평택
+춘천
+원주
+강릉
+대전
+세종
+홍성
+청주
+충주
+영동
+광주
+목포
+여수
+순천
+광양
+나주
+전주
+군산
+정읍
+남원
+고창
+무주
+부산
+울산
+창원
+진주
+거창
+통영
+대구
+안동
+포항
+경주
+울진
+울릉도
+제주
+서귀포
