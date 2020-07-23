@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
   - **wrap_parent** (ConstraintLayout는 이것만 사용가능 )
     - 뷰에 들어있는 내용물의 크기에 따라 뷰의 크기가 결정됨 
   - **match_parent**
+    - 부모의 속성에 매치시킴
     - 뷰그룹에 남아 있는 여유공간을 채움 
   - **크기 값 지정**
     - 크기를 고정된 값으로 직접 지정하고 싶을 때 사용함 
