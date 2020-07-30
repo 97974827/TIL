@@ -49,6 +49,9 @@
       - 한 개의 **서비스**는 반드시 한 개의 **데몬**이 존재 (동작) 한다
 
     ```shell
+    # 방화벽 상태확인 
+    firewall-cmd --state
+    
     # 설정된 포트 확인
     $ firewall-cmd --list-ports
     
@@ -91,7 +94,8 @@
     $ firewall-cmd --permanent --remove-port=23/tcp
     
     # 데몬 이름확인
-    $ setupfire
+    # 없으면 yum install setuptool
+    $ setup
     
     # 시스템 컨트롤 : 데몬서비스 활성화, 재시작, 상태확인, 멈춤, 시작
     $ systemctl enable 서비스이름

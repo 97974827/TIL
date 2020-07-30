@@ -63,13 +63,13 @@
 
       - https://kecmok.tistory.com/25
 
-    - 미러사이트 - kmod 관련 패키지 전부 추가 해봄 - x 
+    - 미러사이트 - kmod 관련 패키지 전부 추가 해봄 - X 
 
-    - 인텔 사이트 파일 찾아서 추가 해봄 - x
+    - 인텔 사이트 파일 찾아서 추가 해봄 - X
 
       - https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi
 
-    - https://linux.cc.iitk.ac.in/mirror/centos/elrepo/elrepo/el7/x86_64/RPMS/ 에서 패키지 설치
+    - https://linux.cc.iitk.ac.in/mirror/centos/elrepo/elrepo/el7/x86_64/RPMS/ 에서 패키지 설치 - X
 
       - <img src="캡처.PNG">
       - [USB 인식 과정 - /proc/bus/usb/devices 경로 존재 X](http://forum.falinux.com/zbxe/index.php?mid=network_programming&document_srl=785255) - x
@@ -100,13 +100,154 @@
 
 
 
+질문
+
+- 유 / 무선 동시 연결시 주의사항
+- 무선 시리얼 통신방법?
+- 소켓 통신시 구현 로직?
+- 통신 테스트
+  - 윈도우
+    - 파이썬 서버 = 파이썬   - O
+    - 파이썬 서버 = 안드로이드 애뮬 - X
+    - 파이썬 서버 = 안드로이드 모바일 - X
+    - 안드로이드 서버 = 안드로이드 클라이언트 - O
+  - 리눅스 (포트 개방함, 서비스 X)
+    - 파이썬 서버 = 파이썬 윈도우 - X
+    - 파이썬 서버 = 안드로이드 애뮬 - X (최종 테스트)
+    - 파이썬 서버 = 안드로이드 모바일 - X (최종 테스트)
+
 
 
 - 미니 PC 
   - 사양 파악
   - **무선랜 지원 불가능할 경우 대책**?
+    - 무선 어댑터 이용해서 처리 
 
 
 
 
+
+- **Python3 Install**
+  - centos7에선 python2 를 제거하면 안됨 - 패키지 종속성 어긋남 
+  - https://tecadmin.net/install-python-3-8-centos/
+
+```shell
+$ sudo yum install gcc openssl-devel bzip2-devel libffi-devel
+$ cd /opt
+$ wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz
+
+$ tar xzf Python-3.8.3.tgz
+
+$ cd Python-3.8.3
+$ sudo ./configure --enable-optimizations
+$ sudo make altinstall
+
+$ python3.8 -V
+```
+
+
+
+### MariaDB 설치 및 환경 설정 
+
+- 참고 : [https://twofootdog.github.io/MariaDB-CentOS7%EC%97%90%EC%84%9C-MariaDB-%EC%84%A4%EC%B9%98-%EB%B0%8F-%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/](https://twofootdog.github.io/MariaDB-CentOS7에서-MariaDB-설치-및-환경설정/)
+
+CentOS7에서 MariaDB를 설치하고 프로젝트에 필요한 다양한 환경설정(데이터베이스생성, 외부접속 허용, 계정생성, 권한생성 등 등을 수행해보자
+
+------
+
+### [1. MariaDB repo 설정]
+
+- repo 설정을 하지 않고 그냥 yum install로 mariadb를 설치하게 되면 설치가 진행되지 않는다. 따라서 repo 설정을 진행해야 한다. /etc/yum.repos.d/ 밑에 MariaDB.repo라는 파일을 만든 후 아래와 같이 정보를 입력한다.
+- 명령어 : `sudo vi /etc/yum.repos.d/MariaDB.repo`![img](https://twofootdog.github.io/images/mariadb_20190322.jpg)
+
+------
+
+### [2. 설치]
+
+- 명령어 : `sudo yum install MariaDB-server`![img](https://twofootdog.github.io/images/mariadb_20190322_2.jpg)
+
+------
+
+### [3. 확인]
+
+- 명령어 : `rpm -qa | grep MariaDB`![img](https://twofootdog.github.io/images/mariadb_20190322_3.jpg)
+
+------
+
+### [4. DB시작 및 패스워드 변경]
+
+- 명령어
+  - `sudo systemctl start mariadb`
+  - `sudo /usr/bin/mysqladmin -u root password '2815'`![img](https://twofootdog.github.io/images/mariadb_20190322_4.jpg)
+
+------
+
+### [5. 접속 확인]
+
+- 명령어 : `mysql -u root -p`![img](https://twofootdog.github.io/images/mariadb_20190322_5.jpg)
+
+------
+
+### [6. 부팅 시 자동시작 확인]
+
+- 명령어 : `sudo systemctl is-enabled mariadb`![img](https://twofootdog.github.io/images/mariadb_20190322_6.jpg)
+
+------
+
+### [7. root 계정 외부 접속 허용]
+
+- 마리아DB는 기본적으로 외부접속이 허용되지 않는다. 따라서 특정 계정에게 외부접속 허용 권한을 부여해야 한다.
+- 명령어 :
+  - 마리아DB 접속 : `mysql -u root -p`
+  - database를 mysql로 전환 : `use mysql;`
+  - root계정 or 특정 계정에 외부접근 권한 부여 : `grant all privileges on (DB이름).(테이블이름) to '(계정명)'@'(접속위치)' identified by '(계정비밀번호)';`
+  - 등록된 권한 확인 : `select host, user, password from user;`
+  - refresh : `flush privileges;`![img](https://twofootdog.github.io/images/mariadb_20190322_7.jpg)
+
+------
+
+### [8. 프로젝트용 database 생성]
+
+- 명령어 :
+  - database 리스트 확인 : `show databases;`
+  - database 생성(기본 UTF8 설정 추가) : `create database (데이터베이스명) default character set utf8 collate utf8_general_ci;`![img](https://twofootdog.github.io/images/mariadb_20190322_8.jpg)
+
+------
+
+### [9. 프로젝트용 사용자 추가]
+
+- 명령어 :
+  - 사용자 생성 : `create user '(유저명)';`
+  - 사용자 외부 접속 권한 생성 : `grant all privileges on (데이터베이스명).(테이블명) to '(유저명)'@'%' identified by '(비밀번호)';`
+  - 사용자 내부 접속 권한 생성 : `grant all privileges on (데이터베이스명).(테이블명) to '(유저명)'@'localhost' identified by '(비밀번호)';`
+  - refresh : `flush privileges;`![img](https://twofootdog.github.io/images/mariadb_20190322_9.jpg)
+
+------
+
+### [10. 권한 부여 확인]
+
+- 명령어 : `show grants for '(유저명)'@'(host)';`![img](https://twofootdog.github.io/images/mariadb_20190322_10.jpg)
+
+------
+
+### [11. 계정삭제 & 권한삭제 ]
+
+- 명령어 :
+  - 계정삭제 : `drop user '(유저명)'@'(host)';`
+  - 권한삭제 : `revoke all on (데이터베이스명).(테이블명) from '(유저명)'@'(host)';`
+
+### [MariaDB utf-8 인코딩 변경]
+
+- /etc/my.cnf.d/client.cnf![img](https://twofootdog.github.io/images/mariadb_20190322_11.jpg)
+- /etc/my.cnf.d/mysql-clients.cnf![img](https://twofootdog.github.io/images/mariadb_20190322_12.jpg)
+- /etc/my.cnf.d/server.cnf![img](https://twofootdog.github.io/images/mariadb_20190322_13.jpg)
+- DB 재시작 : `sudo systemctl restart mariadb`![img](https://twofootdog.github.io/images/mariadb_20190322_14.jpg)
+
+------
+
+*출처 :
+
+- [https://zetawiki.com/wiki/CentOS7_MariaDB_%EC%84%A4%EC%B9%98](https://zetawiki.com/wiki/CentOS7_MariaDB_설치)
+- https://wlsufld.tistory.com/40
+- https://slobell.com/blogs/38 참고
 

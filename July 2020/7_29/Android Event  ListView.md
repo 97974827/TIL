@@ -73,3 +73,43 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
+
+
+```java
+package com.example.myclient;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    Button btn_on;
+    Button btn_off;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        btn_on = (Button) findViewById(R.id.btn_on);
+        btn_off = (Button) findViewById(R.id.btn_off);
+
+    }
+
+    public void onButtonClicked(View view){
+        Toast.makeText(getApplicationContext(), "상태 : ON", Toast.LENGTH_LONG).show();
+        btn_off.setVisibility(View.VISIBLE);
+        btn_on.setVisibility(View.INVISIBLE);
+    }
+
+    public void onButtonReleased(View view){
+        Toast.makeText(getApplicationContext(), "상태 : OFF", Toast.LENGTH_LONG).show();
+        btn_on.setVisibility(View.VISIBLE);
+        btn_off.setVisibility(View.INVISIBLE);
+    }
+}
+```
+
