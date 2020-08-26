@@ -102,4 +102,23 @@ $
 
 - [[Java\] 시리얼 통신(java-simple-serial-connector - jssc)](http://forum.falinux.com/zbxe/index.php?document_srl=849025)
 
-- 
+
+
+
+- #### **JDK 경로** 
+
+`/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/lib`
+
+
+
+
+
+#### 라이브러리 종류
+
+1. **RXTXcomm.jar**
+2. **comm.jar** 
+   - USB 형식 지원하지 않는 다고 함 
+   - https://www.codeproject.com/Questions/450480/How-communicate-with-serial-port-in-Java
+3. **Jssc.2.7.0-src.jar**
+   - 이거 사용함 
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" styleClass="main_background" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kr.gls.view.MainView">
+   <children>
+      <ImageView fx:id="charge_btn" fitHeight="250.0" fitWidth="250.0" layoutX="84.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="File:../../../resources/charge_off_btn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="issued_btn" fitHeight="250.0" fitWidth="250.0" layoutX="385.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="File:../../../resources/issued_off_btn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lookup_btn" fitHeight="250.0" fitWidth="250.0" layoutX="686.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="File:../../../resources/lookup_off_btn.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="60.0" layoutY="70.0" text="저희 세차장을 이용해주셔서 감사합니다.">
+         <font>
+            <Font name="HCR Dotum Bold" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="main_label" fitHeight="112.0" fitWidth="509.0" layoutX="281.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="File:../../../resources/main_use_label.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="main_view_money_label" layoutX="372.0" layoutY="679.0" style="-fx-border-width: 1px; -fx-border-color: gray; -fx-padding: 10px; -fx-border-radius: 10px;" text="투입 금액 : 0 원">
+         <font>
+            <Font name="HCR Dotum Bold" size="34.0" />
+         </font>
+      </Label>
+      <MediaView fx:id="media_view" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="568.0" />
+      <Label layoutX="9.0" layoutY="11.0" prefHeight="35.0" prefWidth="132.0" />
+   </children>
+</AnchorPane>

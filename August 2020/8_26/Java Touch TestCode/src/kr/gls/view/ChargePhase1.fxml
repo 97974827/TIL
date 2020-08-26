@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" styleClass="charge_phase1_background" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kr.gls.view.ChargePhase1">
+   <children>
+      <ImageView fx:id="back_btn" fitHeight="155.0" fitWidth="155.0" layoutX="50.0" layoutY="630.0" onMousePressed="#handleBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="File:resources/back_btn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="next_btn" fitHeight="155.0" fitWidth="155.0" layoutX="825.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../resources/next_btn_off.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="charge_money_label" alignment="CENTER_RIGHT" layoutX="456.0" layoutY="212.0" prefHeight="57.0" prefWidth="363.0" text="0 원" textAlignment="RIGHT" textFill="#34fccb" AnchorPane.bottomAnchor="488.0" AnchorPane.leftAnchor="456.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="212.0">
+         <font>
+            <Font name="HCR Dotum Bold" size="47.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="341.0" fitWidth="254.0" layoutX="397.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+<!--            <Image url="@../../../../resources/bill-1.gif" />-->
+            <Image url="File:resources/bill-1.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
