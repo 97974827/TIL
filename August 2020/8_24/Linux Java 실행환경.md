@@ -121,4 +121,6 @@ $
    - https://www.codeproject.com/Questions/450480/How-communicate-with-serial-port-in-Java
 3. **Jssc.2.7.0-src.jar**
    - 이거 사용함 
+   - [Java - 시리얼 통신 ]([http://forum.falinux.com/zbxe/index.php?mid=lecture_tip&search_target=user_name&search_keyword=%EC%9D%B4%EB%B3%91%EB%B3%B5&document_srl=849025](http://forum.falinux.com/zbxe/index.php?mid=lecture_tip&search_target=user_name&search_keyword=이병복&document_srl=849025))
+   - [jssc 샘플 코드](https://code.google.com/archive/p/java-simple-serial-connector/wikis/jSSC_examples.wiki)
 
