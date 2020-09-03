@@ -1,0 +1,30 @@
+.main_background {
+    -fx-background-image : url("../../../../resources/main_back.png");
+    /*-fx-background-image : url("file:resources/main_back.png")*/
+}
+
+.charge_phase1_background {
+    /*-fx-background-image : url("file:resources/new_charge_back.png");*/
+    -fx-background-image : url("../../../../resources/new_charge_back.png");
+}
+
+.charge_phase2_background {
+    /*-fx-background-image : url("file:resources/charge1_back.png");*/
+    -fx-background-image : url("../../../../resources/charge1_back.png");
+}
+
+.charge_phase3_background {
+    /*-fx-background-image : url("file:resources/charge2_back.png");*/
+    -fx-background-image : url("../../../../resources/charge2_back.png");
+}
+
+.lookup_background {
+    /*-fx-background-image : url("file:resources/lookup_back.png");*/
+    -fx-background-image : url("../../../../resources/lookup_back.png");
+    -fx-background-repeat: no-repeat;
+}
+
+.back_btn_background  {
+    /*-fx-background-image : url("file:C:\\/resources/back_btn.png");*/
+}
+

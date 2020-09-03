@@ -1,0 +1,395 @@
+
+
+# TIL 2020 04/24 금
+
+## Touch Charger Config in Linux Setting
+
+- https://devconnected.com/how-to-install-and-configure-debian-10-buster-with-gnome/
+- 기본 데스크탑 설치, GRUB 부트로더 설치
+- 경로 - /home/charger/Public --> 추후 자동 시작하게 설정하기
+- 절전모드, 사운드 - 데스크탑 설정에서함 
+- 원격 모니터링,  바탕화면 아이콘 설정하기
+- DB 데이터 삭제할 때 환경설정, 공급업체 데이터 남기기 
+
+### /etc/apt/sources.list 수정
+
+- 데비안 메인뒤에 non-free contrib 추가 - 모든 패키지 다운 할수있게 
+- 보안 패키지 포함되어있음
+
+```
+# deb cdrom:[Debian GNU/Linux 10.3.0 _Buster_ - Official amd64 NETINST 20200208-12:07]/ buster main
+
+# deb cdrom:[Debian GNU/Linux 10.3.0 _Buster_ - Official amd64 NETINST 20200208-12:07]/ buster main
+
+deb http://deb.debian.org/debian/ buster main non-free contrib
+deb-src http://deb.debian.org/debian/ buster main non-free contrib
+
+deb http://security.debian.org/debian-security buster/updates main non-free contrib
+deb-src http://security.debian.org/debian-security buster/updates main non-free contrib
+
+# buster-updates, previously known as 'volatile'
+deb http://deb.debian.org/debian/ buster-updates main non-free contrib
+deb-src http://deb.debian.org/debian/ buster-updates main non-free contrib
+
+# This system was installed using small removable media
+# (e.g. netinst, live or single CD). The matching "deb cdrom"
+# entries were disabled at the end of the installation process.
+# For information about how to configure apt package sources,
+deb [arch=amd64] http://mariadb.mirror.liquidtelecom.com/repo/10.4/debian buster main non-free contrib
+# deb-src [arch=amd64] http://mariadb.mirror.liquidtelecom.com/repo/10.4/debian buster main
+# see the sources.list(5) manual.
+
+```
+
+데비안 제시 이후, 이전 `init`프로그램은 **`systemd`**!
+
+직접 확인하십시오. 실행 : `ls -l /sbin/init`그리고 그것이 무엇을 가리키는 지 봅니다. 요즘에는 새롭고 더 나은 초기화 프로그램 인 `systemd`( `/sbin/init -> /lib/systemd/systemd`)을 가리 킵니다 .
+
+### apt 패키지 사용법
+
+- [잘못 설치해서 apt uninstall package 검색함](https://www.manualfactory.net/10175)
+
+#### Install List
+
+```
+net-tools, python, pip3, static ip, git, ufw, vnc viewer
+```
+
+***
+
+- [where are sudo incidents logged?](https://unix.stackexchange.com/questions/70684/where-are-sudo-incidents-logged)
+
+#### 새로운 계정 sudo 권한 얻기
+
+```
+su 루트접속
+vi /etc/sudoers
+visudo -f /etc/sudoers
+```
+
+```
+# User privilege specification
+(계정이름) ALL=(ALL:ALL) ALL 
+```
+
+- 참고 : https://blog.outsider.ne.kr/505
+
+- [readonly option is set (add to override) 해결방법](https://m.blog.naver.com/PostView.nhn?blogId=glryd2&logNo=110189400123&proxyReferer=https:%2F%2Fwww.google.com%2F) -> :wq!
+
+***
+
+### 네트워크 도구 설치 - ifconfig, ping ..
+
+```
+sudo apt-get install net-tools
+```
+
+#### Static IP
+
+- 참고 : https://codedosa.com/1029
+- 재시작 명령 - [service network restart in debian 10](https://vitux.com/how-to-start-stop-and-restart-services-in-debian-10/)
+
+```
+sudo /etc/init.d/networking restart
+
+# sudo ifconfig로 구분안되면 ip a 사용 
+```
+
+***
+
+#### ufw (방화벽 설정)
+
+- 참고 : https://tapito.tistory.com/561
+
+```
+# install
+sudo apt install -y ufw
+
+mysql, vnc, ssh 열어주기 
+```
+
+***
+
+#### Python Install
+
+- 참고 : [python install in debian 10 - 검색](https://linuxize.com/post/how-to-install-python-3-8-on-debian-10/)
+- debian 에는 2.x, 3.7.3 버전이 있음 - 일단 이걸로 진행
+
+```
+python3 --verison
+
+# 새 버전으로 전환 
+update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3 10
+```
+
+### Python pip install
+
+- 참고 : [pip 사용법](https://christoper31.postype.com/post/1891949)
+- [pip 설치 오류](https://aisiunme.github.io/ubuntu/2018/09/12/troubleshooting-ubuntu-pip-install/)
+- [pip 설치시 sudo 사용 피하기](https://medium.com/@chullino/sudo-%EC%A0%88%EB%8C%80-%EC%93%B0%EC%A7%80-%EB%A7%88%EC%84%B8%EC%9A%94-8544aa3fb0e7https://medium.com/@chullino/sudo-절대-쓰지-마세요-8544aa3fb0e7)
+- [python version upgrade in debian 10 - 검색](https://www.vultr.com/docs/upgrade-python-on-debian)
+- [tkinter 설치 오류](https://askubuntu.com/questions/815874/importerror-no-named-tkinter-please-install-the-python3-tk-package)
+- [pyscard 모듈 설치](https://sorokin.engineer/posts/en/nfc_mifare_reader.html)
+- [requests 모듈 설치](http://blog.naver.com/PostView.nhn?blogId=chandong83&logNo=220825663204&redirect=Dlog&widgetTypeCall=true)
+
+```shell
+requests 모듈이 없다는 얘기이다.
+아래의 명령을 실행하여 설치를 한다.
+$sudo pip install requests
+
+만약 pip가 설치되어 있지 않다면 먼저 pip부터 설치하자.
+sudo apt-get install python3-setuptools
+$sudo apt install python3-pip
+
+
+혹시 requests를 설치하려는데 아래와 같은 메시지가 나타난다면..
+Requirement already satisfied (use --upgrade to upgrade): requests in /usr/local/lib/python3.5/dist-packages
+
+
+
+그냥 소스 코드를 다운로드해서 설치하는 게 정신건강에 좋다.
+
+1. 다운로드하기
+$git clone git://github.com/kennethreitz/requests.git
+
+2. 설치하기
+$cd requests
+$sudo python setup.py install
+참고 자료
+http://docs.python-requests.org/en/master/user/install/
+```
+
+
+
+```shell
+sudo apt update 
+sudo apt install -y python3 pip
+
+# 다운 후 버전확인
+pip3 --version
+pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7)
+
+# 쉘에서 입력
+pip3 install pyserial
+pip3 install pygame
+
+# tkinter 설치
+sudo apt-get install python3.7-tk
+
+# 스마트 카드 모듈 설치
+# 리더기, 카드 작동 테스트
+$ sudo apt-get install libacsccid1 pcscd pcsc-tools
+$ pcsc-scan
+
+# 리눅스 드라이버 설치 (debian)
+C:\Users\82105\셀프세차장 인수인계\터치충전기\충전기SDK\ACS-Unified-PKG-Lnx-115-P\ACS-Unified-PKG-Lnx-115-P\acsccid_linux_bin-1.1.5\debian\buster
+
+filezila로 옮김
+
+# 파이썬 pyscard 패키지 설치
+sudo apt-get install swig libpcsclite-dev 
+sudo -H pip3 install pyscard
+
+# pymysql 설치
+pip3 install pymysql
+```
+
+***
+
+### deb 파일 실행하기 (리더기 드라이버)
+
+- 참고 - https://m.blog.naver.com/PostView.nhn?blogId=shineri&logNo=60123473260&proxyReferer=https:%2F%2Fwww.google.com%2F, https://nightshadow.tistory.com/202
+
+```
+sudo dpkg -i 파일이름.deb
+```
+
+***
+
+### VNC Viewer (원격 모니터링)
+
+- 참고 - [vnc install in debian 10 검색 - tightvnc](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-debian-10), https://serwerweb.pl/en/2019/11/05/instalacja-serwera-vnc-na-debianie-10
+- 이링크 보고 따라함 : https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-debian-10
+
+```
+# vncserver 시작
+$ vncserver
+
+New 'X' desktop is Charger:1
+
+Starting applications specified in /home/charger/.vnc/xstartup
+Log file is /home/charger/.vnc/Charger:1.log
+
+
+# 가동중인 vncserver 종료
+vncserver -kill :1
+
+Killing Xtightvnc process ID 4413
+```
+
+***
+
+### USB Port 확인 (serial)
+
+- [계정 권한 추가 - [How do I allow a non-default user to use serial device ttyUSB0?](https://askubuntu.com/questions/112568/how-do-i-allow-a-non-default-user-to-use-serial-device-ttyusb0)]
+
+```
+Permision Error -> 권한 설정해주기
+$ sudo adduser 유저이름 dialout
+로그아웃 후 변경
+
+# 사용중인 포트 확인 
+sudo dmesg | grep tty
+lsusb 
+lsusb -v
+
+# baud 수정하기 
+stty 바꿀속도 < /dev/포트이름
+
+# 간단하게 쉘에서 통신할때 
+# 수신 대기 설정
+cat /dev/ttyUSB0
+
+# 송신 명령 
+echo "송신 명령" > /dev/포트이름
+
+```
+
+***
+
+### maria DB 10.4 install
+
+- 참고
+  -  https://computingforgeeks.com/how-to-install-mariadb-on-debian/
+  - https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10
+- user 생성
+- database 생성
+- 구조 데이터 sql 파일 실행
+- 데이터 삭제 
+- 
+
+- https://bscnote.tistory.com/77 plugin 변경
+
+```
+# 설치후 root 접속
+mysql -u root -p
+비밀번호 입력
+
+# MYSQL user 추가 
+create user 'pi'@'localhost' identified by '1234';
+create user 'pi'@'%' identified by '1234';
+grant all privileges on *.* to 'pi'@'localhost';
+grant all privileges on *.* to 'pi'@'%';
+
+# database 생성 , my.cnf
+# MariaDB-specific config file.
+# Read by /etc/mysql/my.cnf
+
+[client]
+# Default is Latin1, if you need UTF-8 set this (also in server section)
+# default-character-set = utf8
+character-set-server = utf8
+[mysqld]
+#
+# * Character sets
+#
+# Default is Latin1, if you need UTF-8 set all this (also in client section)
+
+
+character-set-server=utf8
+collation-server=utf8_general_ci
+init_connect=set collation_connection=utf8_general_ci
+init_connect=set names utf8
+character-set-server=utf8
+character-set-client-handshake = TRUE
+
+# character-set-server  = utf8
+# collation-server      = utf8_general_ci
+# character_set_server   = utf8
+# collation_server       = utf8_general_ci
+# Import all .cnf files from configuration directory
+# !includedir /etc/mysql/mariadb.conf.d/
+
+
+[mysqldump]
+# default-character-set = utf8
+character-set-server = utf8
+
+[mysql]
+# dafault-character-set = utf8
+character-set-server = utf8
+~                                                                                                                               
+~                                                                                                                               
+~                                    
+```
+
+
+
+### [[ubuntu 16.04\] mariaDB 10.0 외부접속 설정 시 10061 에러](https://rootjs.tistory.com/34)
+
+워크벤치로 내부네트워크로 연결 시도하는데 오류가 나길래 검색해보니 **bind_address 이값을 0.0.0.0으로 변경해야한다함**
+
+
+
+대부분의 글에 파일 위치는 /etc/my.cnf 인데 이경로에 파일이 없음..
+
+
+
+/etc/mysql/my.cnf 에 파일이 있으나 아래 내용처럼 되어있음.
+
+
+
+```
+  1 # The MariaDB configuration file  
+  2 #  
+  3 # The MariaDB/MySQL tools read configuration files in the following order:  
+  4 # 1. "/etc/mysql/mariadb.cnf" (this file) to set global defaults,  
+  5 # 2. "/etc/mysql/conf.d/*.cnf" to set global options.  
+  6 # 3. "/etc/mysql/mariadb.conf.d/*.cnf" to set MariaDB-only options.  
+  7 # 4. "~/.my.cnf" to set user-specific options.  
+  8 #  
+  9 # If the same option is defined multiple times, the last one will apply. 
+  10 # 
+  11 # One can use all long options that the program supports. 
+  12 # Run program with --help to get a list of available options and with 
+  13 # --print-defaults to see which it would actually understand and use. 
+  14 
+  15 # 
+  16 # This group is read both both by the client and the server 
+  17 # use it for options that affect everything 
+  18 # 
+  19 [client-server] 
+  20 
+  21 # Import all .cnf files from configuration directory 
+  22 !includedir /etc/mysql/conf.d/ 
+  23 !includedir /etc/mysql/mariadb.conf.d/
+```
+
+22행 23행 보면 폴더가 인클루드 되어있으니 그쪽으로 가서 확인을 해야하는데 실제 bind_address값이 있는 위치는 
+
+/etc/mysql/mariadb.conf.d/50-server.cnf
+
+위 경로파일을 열면 bind_address설정이 보임..
+
+수정 후에 mysql 재시작으로 적용이 안됨 재부팅 후 정상 연결 확인
+
+
+
+출처: https://rootjs.tistory.com/34 [pungki21@gmail.com]                                                                             
+
+
+
+***
+
+### 사운드 작동 안될때
+
+[사운드 관련 멈출때](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-debian-10)
+
+***
+
+### 런레벨 제어 (chkconfig - X , sysv-rc-conf)
+
+https://confluence.jaytaala.com/display/TKB/chkconfig+alternative+for+debian+based+distros
+
+- S**  -  활성화상태
+- K**  -  비활성화상태

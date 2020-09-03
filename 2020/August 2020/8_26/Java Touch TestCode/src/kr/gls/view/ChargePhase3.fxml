@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" styleClass="charge_phase3_background" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kr.gls.view.ChargePhase3">
+   <children>
+      <Label fx:id="total_charge_label" alignment="CENTER_RIGHT" layoutX="456.0" layoutY="212.0" prefHeight="57.0" prefWidth="363.0" text="0 원" textAlignment="RIGHT" textFill="#34fccb">
+         <font>
+            <Font name="HCR Dotum Bold" size="47.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
