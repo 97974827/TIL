@@ -1,0 +1,11 @@
+### 리눅스 최적화 강의
+
+https://hamonikr.org/board_bFBk25/16135
+
+
+
+
+
+### Linux-Unix-리눅스시스템-디렉토리-구조와-기능
+
+https://firedev.tistory.com/entry/Linux-Unix-%EB%A6%AC%EB%88%85%EC%8A%A4%EC%8B%9C%EC%8A%A4%ED%85%9C-%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC-%EA%B5%AC%EC%A1%B0%EC%99%80-%EA%B8%B0%EB%8A%A5
