@@ -32,3 +32,6 @@
 127.0.0.1 - - [14/Oct/2020:17:31:35 +0900] "GET / HTTP/1.1" 200 11415
 0:0:0:0:0:0:0:1 - - [14/Oct/2020:17:31:36 +0900] "GET /JSPBasic/JSPTag/comment.jsp HTTP/1.1" 200 149
 0:0:0:0:0:0:0:1 - - [14/Oct/2020:17:32:10 +0900] "GET /JSPBasic/JSPTag/comment.jsp HTTP/1.1" 500 3158
+127.0.0.1 - - [14/Oct/2020:17:32:47 +0900] "GET / HTTP/1.1" 200 11415
+0:0:0:0:0:0:0:1 - - [14/Oct/2020:17:32:49 +0900] "GET /JSPBasic/JSPTag/comment.jsp HTTP/1.1" 200 171
+0:0:0:0:0:0:0:1 - - [14/Oct/2020:17:33:31 +0900] "GET /JSPBasic/JSPTag/comment.jsp HTTP/1.1" 200 168

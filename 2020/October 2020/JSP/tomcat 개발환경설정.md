@@ -12,9 +12,12 @@
 ### tomcat 개발환경설정
 
 - tomcat 다운로드 사이트 : https://tomcat.apache.org/download-90.cgi 
+
 - core - 압축 파일 (9버전 사용)
 
 - 압축 파일로 셋팅하기 
+
+  
 
 # 1. 개발환경 세팅(3) 아파치 톰캣 apache tomcat 설치 및 환경변수 설정
 
@@ -172,16 +175,33 @@ C:\apache-tomcat-8.5.37
 
 - 주의사항 
   - 톰캣 startup.bat 파일 끄면 톰캣 실행 X
+  
   - 톰캣 설치다음 이클립스 설정에서 서버타입에 톰캣이 보이지 않을떄 https://blog.naver.com/hjinha2/221180700448
+  
   - Servers - 서버 생성 - 아파치 톰캣 9선택 - Tomcat installation directory 잡아줘야함 
+  
   - 톰캣 설치 경로 파일 경로 설정 해야함
+  
   - <img src="./이클립스 톰캣생성후 설정.PNG">
+  
   - <img src="./이클립스 톰캣생성후 설정2.PNG">
-  - 안전 하게 수동 변경하기 위해 체크 해야함 
+  
+  - 안전 하게 수동 변경하기 위해 체크 해야함
+  
+     
+  
   - <img src="./이클립스 톰캣생성후 설정3.PNG">
+  
   - 서버 설정 변경 이후 저 버튼을 클릭해줘야 동기화가 된 상태 
+  
+    
+  
   - <img src="./이클립스 톰캣생성후 설정4.PNG">
+  
   - 프로젝트 파일 - Servers 삭제 하면안됨
+  
+    
+  
   - 프로젝트 생성
     - New - Dynamic Web Project 
       - 이름 설정 후 Web Module 에서 박스 체크 
