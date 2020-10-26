@@ -26,4 +26,19 @@
     <!--
     <Manager pathname="" />
     -->
+    
+    <!-- Connection Pool 설정 -->
+    <Resource
+    	auth="Container"
+    	driverClassName = "com.mysql.cj.jdbc.Driver"
+    	url = "jdbc:mysql://localhost:3306/jsp_practice?serverTimezone=UTC"
+    	username = "root"
+    	password = "mysql"
+    	name = "jdbc/mysql"
+    	type = "javax.sql.DataSource"
+    	maxActive = "300"
+    	maxWait = "1000" 
+    />
+    
+    
 </Context>
