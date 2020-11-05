@@ -12,7 +12,7 @@
 
   - ```jsp
     // 출력
-    &lt;%= value %&gt; // EL $(value)  ㅇ
+    <%= value %>; // EL $(value)  ㅇ
     
     request.getParameter("name")
     // 리퀘스트 객체 대신 사용가능 
@@ -212,6 +212,7 @@
 - 자바 클래스 (HttpServlet 클래스)
 - `hello.jsp` -> 웹서버로 실행 시 -> `hello_jsp.java`로 변경 
 - 기능이 복잡해지면 서블릿 으로 보통 직접 구현함 
+- **하나의 컨트롤러  = 서블릿**
 
 <img src="./MVC 패턴 구조.PNG">
 

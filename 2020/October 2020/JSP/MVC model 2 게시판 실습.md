@@ -1,8 +1,6 @@
 # MVC model 2 게시판 실습 
 
-
-
-#### DB Table 
+#### SQL
 
 ```mysql
 # 번호, 작성자이름, 글제목, 내용, 작성날짜, 조회수 
@@ -18,8 +16,13 @@ CREATE TABLE izone_board(
 INSERT INTO izone_board (board_name, board_title, board_content)
 VALUES ('홍길동', '테스트용 게시물입니다.', '가나다라마바사아자차카타파하');
 
-SELECT * FROM izone_board;
+SELECT * FROM izone_member;
+SELECT * FROM izone_board ORDER BY board_id DESC;
 
+# 페이징 처리
+SELECT * FROM izone_board ORDER by board_id DESC LIMIT 0,5;
+
+SELECT COUNT(*) FROM izone_board;
 ```
 
 
